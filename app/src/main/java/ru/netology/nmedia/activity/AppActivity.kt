@@ -13,6 +13,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.firebase.messaging.FirebaseMessaging
@@ -76,7 +77,8 @@ class AppActivity : AppCompatActivity(R.layout.activity_app) {
                 return when (menuItem.itemId) {
                     R.id.signin -> {
                         // TODO: just hardcode it, implementation must be in homework
-                        AppAuth.getInstance().setAuth(5, "x-token")
+                        //AppAuth.getInstance().setAuth(5, "x-token")
+                        findNavController(R.id.signin).navigate(R.id.action_feedFragment_to_signInFragment)
                         true
                     }
 
