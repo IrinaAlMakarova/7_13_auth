@@ -128,14 +128,14 @@ class PostRepositoryImpl(private val dao: PostDao) : PostRepository {
 
     ///////////////////////////////////
     // Auth
-    suspend fun authUser(login: String, password: String)  {
+    suspend fun authUser(login: String, password: String): ru.netology.nmedia.dto.User {
         try {
             val response = PostsApi.service.updateUser(login, password)
             if (!response.isSuccessful) {
                 throw ApiError(response.code(), response.message())
             }
 
-           response.body() ?: throw ApiError(response.code(), response.message())
+            return response.body() ?: throw ApiError(response.code(), response.message())
         } catch (e: IOException) {
             throw NetworkError
         } catch (e: Exception) {
