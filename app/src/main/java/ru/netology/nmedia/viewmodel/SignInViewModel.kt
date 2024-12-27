@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.firestore.auth.User
 import kotlinx.coroutines.launch
+import ru.netology.nmedia.dto.User
 import ru.netology.nmedia.model.FeedModelState
 import ru.netology.nmedia.repository.PostRepositoryImpl
 import javax.inject.Inject
