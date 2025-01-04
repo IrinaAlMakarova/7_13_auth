@@ -42,5 +42,9 @@
         android:id="@+id/signInFragment"
         android:name="ru.netology.nmedia.activity.SignInFragment"
         android:label="SignInFragment"
-        tools:layout="@layout/fragment_sing_in"/>
+        tools:layout="@layout/fragment_sing_in">
+        <action
+            android:id="@+id/action_signInFragment_to_feedFragment"
+            app:destination="@id/feedFragment" />
+    </fragment>
 </navigation>

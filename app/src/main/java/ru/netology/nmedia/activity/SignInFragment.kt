@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import ru.netology.nmedia.R
 import ru.netology.nmedia.auth.AppAuth
 import ru.netology.nmedia.databinding.FragmentSingInBinding
 import ru.netology.nmedia.viewmodel.SignInViewModel
@@ -38,6 +39,10 @@ class SignInFragment : Fragment() {
             signIn.setOnClickListener {
                 viewModel.loginAttempt(login.text.toString(), password.text.toString())
             }
+        }
+
+        binding.signIn.setOnClickListener{
+            findNavController().navigate(R.id.action_signInFragment_to_feedFragment)
         }
 
         return binding.root
