@@ -65,7 +65,7 @@ interface PostsApiService {
     // Auth
     @FormUrlEncoded
     @POST("users/authentication")
-    suspend fun updateUser(@Field("login") login: String, @Field("pass") pass: String): Response<User>
+    suspend fun updateUser(@Field("login") login: String, @Field("password") password: String): Response<User>
     ///////////////////////////////////
 
     @GET("posts/{id}")

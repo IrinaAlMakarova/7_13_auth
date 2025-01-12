@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import ru.netology.nmedia.R
 import ru.netology.nmedia.auth.AppAuth
 import ru.netology.nmedia.databinding.FragmentSingInBinding
@@ -34,15 +36,34 @@ class SignInFragment : Fragment() {
             findNavController().navigateUp()
         }
 
+        // Ошибка ввода логина/пароля
+        //viewModel.dataState.observe(viewLifecycleOwner) { state ->
+        //    if (state.loginError) {
+        //        binding.login.error = getString(R.string.wrong_login)
+        //    }
+        //    if (state.passwordError) {
+        //        binding.password.error = getString(R.string.wrong_password)
+        //    }
+        //}
+
         with(binding) {
             login.requestFocus()
             signIn.setOnClickListener {
                 viewModel.loginAttempt(login.text.toString(), password.text.toString())
-            }
-        }
 
-        binding.signIn.setOnClickListener{
-            findNavController().navigate(R.id.action_signInFragment_to_feedFragment)
+                // Ошибка ввода логина/пароля
+                viewModel.dataState.observe(viewLifecycleOwner) { state ->
+                    if (state.loginError) {
+                        binding.login.error = getString(R.string.wrong_login)
+                    }
+                    if (state.passwordError) {
+                        binding.password.error = getString(R.string.wrong_password)
+                    }
+                    if(!state.loginError && !state.passwordError){
+                        findNavController().navigateUp()
+                    }
+                }
+            }
         }
 
         return binding.root

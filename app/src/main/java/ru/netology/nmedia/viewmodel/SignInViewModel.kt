@@ -22,8 +22,6 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
     private val repositoryImpl: PostRepositoryImpl =
         PostRepositoryImpl(AppDb.getInstance(context = application).postDao())
 
-
-
     private val _data = MutableLiveData<User>()
     val data: LiveData<User>
         get() = _data
@@ -36,7 +34,10 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
             try {
                 _data.value = repositoryImpl.authUser(login, password)
             } catch (e: Exception) {
-                _dataState.value = FeedModelState()
+                _dataState.value = FeedModelState(loginError = true)
+                _dataState.value = FeedModelState(passwordError = true)
             }
     }
+
 }
+
