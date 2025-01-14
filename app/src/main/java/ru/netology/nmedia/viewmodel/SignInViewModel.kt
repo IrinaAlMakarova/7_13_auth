@@ -30,9 +30,10 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
     val dataState: LiveData<FeedModelState>
         get() = _dataState
 
-    fun loginAttempt(login: String, password: String) = viewModelScope.launch {
+    fun loginAttempt(login: String, pass: String) = viewModelScope.launch {
             try {
-                _data.value = repositoryImpl.authUser(login, password)
+                repositoryImpl.authUser(login, pass)
+                _dataState.value = FeedModelState()
             } catch (e: Exception) {
                 _dataState.value = FeedModelState(loginError = true)
                 _dataState.value = FeedModelState(passwordError = true)

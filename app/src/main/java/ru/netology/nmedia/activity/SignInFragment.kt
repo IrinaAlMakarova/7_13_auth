@@ -36,16 +36,6 @@ class SignInFragment : Fragment() {
             findNavController().navigateUp()
         }
 
-        // Ошибка ввода логина/пароля
-        //viewModel.dataState.observe(viewLifecycleOwner) { state ->
-        //    if (state.loginError) {
-        //        binding.login.error = getString(R.string.wrong_login)
-        //    }
-        //    if (state.passwordError) {
-        //        binding.password.error = getString(R.string.wrong_password)
-        //    }
-        //}
-
         with(binding) {
             login.requestFocus()
             signIn.setOnClickListener {
