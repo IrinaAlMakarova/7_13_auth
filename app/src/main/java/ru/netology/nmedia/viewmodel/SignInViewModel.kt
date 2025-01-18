@@ -32,7 +32,7 @@ class SignInViewModel(application: Application) : AndroidViewModel(application) 
 
     fun loginAttempt(login: String, pass: String) = viewModelScope.launch {
             try {
-                repositoryImpl.authUser(login, pass)
+                _data.value = repositoryImpl.authUser(login, pass)
                 _dataState.value = FeedModelState()
             } catch (e: Exception) {
                 _dataState.value = FeedModelState(loginError = true)
