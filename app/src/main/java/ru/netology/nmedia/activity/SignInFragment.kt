@@ -29,10 +29,8 @@ class SignInFragment : Fragment() {
 
         val viewModel: SignInViewModel by viewModels()
 
-        lateinit var appAuth: AppAuth
-
         viewModel.data.observe(viewLifecycleOwner) {
-            appAuth.setAuth(it.id, it.token)
+            AppAuth.getInstance().setAuth(it.id, it.token)
             findNavController().navigateUp()
         }
 
